@@ -9,3 +9,10 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+//run tests with "alloy compile && titanium clean && titanium build --platform=ios --deploy-type=test"
+
+if(Ti.App.deployType == 'test'){
+	require('specs/test-index');
+	require('behave').run(this);
+}
