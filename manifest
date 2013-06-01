@@ -1,0 +1,9 @@
+#appname:RndPhrase Mobile
+#appid:dk.rlindsgaard.rndphrasemobile
+#type:mobile
+#guid:13d65065-8bb2-4453-b6e5-18f130359152
+#version:1.0
+#publisher:Ronni Elken Lindsgaard
+#url:http://rlindsgaard.blogspot.com
+#image:appicon.png
+#desc:Implementation of RndPhrase - https://github.com/brinchj/RndPhrase for mobile devices.
