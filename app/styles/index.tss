@@ -1,8 +1,41 @@
 ".container": {
 	backgroundColor:"white"
 },
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
-} 
+
+"#rndphraseForm": {
+	top: 10,
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE
+},
+
+".hiddenText": {
+	passwordMask: true
+},
+
+"TextField": {
+	width: 250,
+	height: 40,
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	color: "#336699"
+},
+
+"#seed": {
+	top: 0,
+	hintText: "Seed"
+},
+
+"#password": {
+	top: 50,
+	hintText: "Password"
+},
+
+"#domain": {
+	top: 100,
+	hintText: "Domain"
+},
+
+"#rndphrase": {
+	top: 150,
+	width: 20,
+	height: 40
+}

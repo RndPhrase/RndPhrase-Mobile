@@ -1,5 +1,10 @@
 <Alloy>
 	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+		<View id="rndphraseForm">
+		    <TextField id="seed" class="textField, hiddenText"></TextField>
+		    <TextField id="password" class="textField, hiddenText"></TextField>
+		    <TextField id="domain" class="textField"></TextField>
+		    <TextField id="rndphrase" class="textField"></TextField>
+		</View>
 	</Window>
 </Alloy>
