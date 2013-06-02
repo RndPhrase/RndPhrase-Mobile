@@ -1,9 +1,9 @@
 <Alloy>
 	<Window class="container">
 		<View id="rndphraseForm">
-		    <TextField id="seed" class="textField, hiddenText"></TextField>
-		    <TextField id="password" class="textField, hiddenText"></TextField>
-		    <TextField id="domain" class="textField"></TextField>
+		    <TextField id="seed" class="textField, hiddenText" onChange="doRndphrase"></TextField>
+		    <TextField id="password" class="textField, hiddenText" onChange="doRndphrase"></TextField>
+		    <TextField id="domain" class="textField" onChange="doRndphrase"></TextField>
 		    <TextField id="rndphrase" class="textField"></TextField>
 		</View>
 	</Window>

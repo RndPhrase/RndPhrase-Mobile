@@ -16,7 +16,8 @@
 	width: 250,
 	height: 40,
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	color: "#336699"
+	color: "#336699",
+	clearOnEdit: false
 },
 
 "#seed": {
@@ -36,6 +37,6 @@
 
 "#rndphrase": {
 	top: 150,
-	width: 20,
+	width: 50,
 	height: 40
 }
