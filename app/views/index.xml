@@ -3,8 +3,9 @@
 		<View id="rndphraseForm">
 		    <TextField id="seed" class="textField, hiddenText" onChange="doRndphrase"></TextField>
 		    <TextField id="password" class="textField, hiddenText" onChange="doRndphrase"></TextField>
-		    <TextField id="domain" class="textField" onChange="doRndphrase"></TextField>
+		    <TextField id="host" class="textField" onChange="doRndphrase"></TextField>
 		    <TextField id="rndphrase" class="textField"></TextField>
+		    <Button id="clipboard" onClick="doCopy" title="Copy to clipboard">
 		</View>
 	</Window>
 </Alloy>

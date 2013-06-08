@@ -30,13 +30,24 @@
 	hintText: "Password"
 },
 
-"#domain": {
+"#host": {
 	top: 100,
-	hintText: "Domain"
+	hintText: "Domain",
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
 },
 
 "#rndphrase": {
 	top: 150,
-	width: 50,
-	height: 40
+	left: 0,
+	width: 60,
+	height: 40,
+	editable: false
+},
+
+"#clipboard": {
+	top: 150,
+	left: 70,
+	height: 40,
+	width: 180,
+	enabled: false
 }
