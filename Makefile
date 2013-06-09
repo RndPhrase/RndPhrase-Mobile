@@ -3,19 +3,16 @@ CPP=gcc -c -C -P -E -xc -I. \
 WORK=work
 BUILD=app/lib
 PLATFORM=ios
-.PHONY: clean all update test
+.PHONY: clean all test
 
-all: 
+all: test
 
-default: fetch_js
-
-update: 
-	scripts/fetch_js.sh app/lib
+default: test
 
 test:
 	@alloy compile && \
-	titanium clean && \
 	titanium build --platform ${PLATFORM} --deploy-type test
 
 clean:
-	@echo "Nothing to be cleaned just yet ;)"
+	@echo "Cleaning workspace" \
+	titanium clean
