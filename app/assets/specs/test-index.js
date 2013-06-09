@@ -17,4 +17,14 @@ describe("Index controller tests", function() {
 		generated_hash = index.createHash(seed, host, password);
 		expect(generated_hash).toBe(hash);
 	});
+	
+	it("Host case independent", function(){
+		seed = 'test';
+		host = 'TEST.COM';
+		password = 'test';
+		hash = '1huk950kdy36r5zl';
+		
+		generated_hash = index.createHash(seed, host, password);
+		expect(generated_hash).toBe(hash);
+	});
 });
