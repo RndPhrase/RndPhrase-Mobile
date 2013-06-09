@@ -27,6 +27,7 @@ function doRndphrase(e){
 		$.clipboard.enabled = true;
 		$.rndphrase.value = rndphrase;
 	} else {
+		$.rndphrase.value = '';
 		$.clipboard.enabled = false;
 	}
 }
