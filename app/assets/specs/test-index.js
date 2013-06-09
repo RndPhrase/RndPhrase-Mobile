@@ -27,4 +27,10 @@ describe("Index controller tests", function() {
 		generated_hash = index.createHash(seed, host, password);
 		expect(generated_hash).toBe(hash);
 	});
+
+	it("Persisted seed", function(){
+		Titanium.App.Properties.setString("seed","persistedvalue");
+		var index = Alloy.createController("index");
+		expect(index.seed.value).toBe("persistedvalue");
+	});
 });

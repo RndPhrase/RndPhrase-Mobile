@@ -16,6 +16,9 @@ $.createHash = function(seed, host, password){
 
 function doRndphrase(e){
 	var seed = $.seed.value;
+	//Let the seed be persisted for now upon changing it
+	Titanium.App.Properties.setString("seed",seed);
+	
 	var host = $.host.value;
 	var password = $.password.value;
 	var rndphrase = $.createHash(seed, host, password);
@@ -32,4 +35,5 @@ function doCopy(e){
 	Ti.UI.Clipboard.setText($.rndphrase.value);
 }
 
+$.seed.value = Titanium.App.Properties.getString("seed","");
 $.index.open();
