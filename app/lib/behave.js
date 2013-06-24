@@ -3,9 +3,9 @@ var suites = [],
 	specCount = 0,
 	failures = 0,
 	successes = 0;
-	
-var tests = [];
 
+var tests = [];
+	
 //add to log output
 function log(text) {
     output.push('[behave] '+text);
@@ -17,6 +17,8 @@ function Suite(descText) {
 }
 
 Suite.prototype.evaluate = function(cb) {
+	tests.push({suite: true, name: this.desc});
+	
 	log('Describing '+this.desc+':');
 	var executing = false,
 		that = this;
@@ -111,14 +113,25 @@ Expectation.prototype.notToMatch = function(regex) {
 };
 
 Expectation.prototype.evaluate = function() {
+	
+	var test = { name: null, success: null };
+	
 	if (this.satisfied) {
 		successes++;
 		log('I expected '+this.someValue+' '+ this.comparisonText +' '+this.otherValue);
+		
+		test.name = 'I expected '+this.someValue+' '+ this.comparisonText +' '+this.otherValue;
+		test.success = true;		
 	}
 	else {
 		failures++;
 		log('I incorrectly got '+this.someValue+', when I expected '+this.otherValue);
+		
+		test.name = 'I incorrectly got '+this.someValue+', when I expected '+this.otherValue;
+		test.success = false;
 	}
+	
+	tests.push(test);
 };
 
 //Configure the global object of a test suite with the necessary functions
@@ -176,9 +189,9 @@ function writeJUnitXMLFile(tests)
 	var xmlString = '<?xml version="1.0" ?>';
 	xmlString += '<testsuites>\n';
 	xmlString += '<testsuite name="Main">\n';	
-
+		
 	_.each(tests, function(test, index) {
-
+		
 		if ( test.suite && test.suite === true )
 		{
 			if ( index === 0 )
@@ -195,27 +208,27 @@ function writeJUnitXMLFile(tests)
 		}
 		else
 		{
-
+		
 			xmlString += '<testcase name="'+test.name+'">\n';
 			if ( test.success === false )
 			{
 				xmlString += '<failure type="NotEnoughFoo"> '+test.name+' </failure>\n';
 			}
 			xmlString += '</testcase>\n';
-
+			
 		}
-
+		
 	});
-
+	
 	xmlString += '</testsuite>\n';
 	xmlString += '</testsuites>';
-
+	
 	// Write XML to file
 	var fileloc = "/tmp/junit-buildresults.xml";	
 	var newFile = Titanium.Filesystem.getFile("/tmp", "junit-buildresults.xml");
-
+		
 	newFile.createFile();
-
+	
 	if (newFile.exists()) {
 	    newFile.write(xmlString);
 	    Ti.API.info("[JUNITXMLFILE] written to "+fileloc);
@@ -252,7 +265,7 @@ exports.run = function() {
 			log('Writing JUnit XML file...');
 			writeJUnitXMLFile(tests);
 			log('...OK');
-			
+					
 			//Flush output
 			Ti.API.info(output.join('\n'));
 			clearInterval(timer);
