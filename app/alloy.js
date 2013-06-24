@@ -12,7 +12,7 @@
 
 //run tests with "alloy compile && titanium clean && titanium build --platform=ios --deploy-type=test"
 
-if(Ti.App.deployType == 'test'){
+if(Ti.App.deployType !== 'production'){
 	require('specs/test-index');
 	require('behave').run(this);
 }

@@ -4,6 +4,8 @@ var suites = [],
 	failures = 0,
 	successes = 0;
 	
+var tests = [];
+
 //add to log output
 function log(text) {
     output.push('[behave] '+text);
@@ -167,6 +169,59 @@ exports.andSetup = function(global) {
 	};
 };
 
+// create XML string in JUnit format
+function writeJUnitXMLFile(tests)
+{
+	// Build XML string
+	var xmlString = '<?xml version="1.0" ?>';
+	xmlString += '<testsuites>\n';
+	xmlString += '<testsuite name="Main">\n';	
+
+	_.each(tests, function(test, index) {
+
+		if ( test.suite && test.suite === true )
+		{
+			if ( index === 0 )
+			{
+				xmlString = '<?xml version="1.0"?>\n';
+				xmlString += '<testsuites>\n';
+				xmlString += '<testsuite name="'+test.name+'">\n';
+			}
+			else
+			{
+				xmlString += '</testsuite>';
+				xmlString += '<testsuite name="'+test.name+'">\n';	
+			}					
+		}
+		else
+		{
+
+			xmlString += '<testcase name="'+test.name+'">\n';
+			if ( test.success === false )
+			{
+				xmlString += '<failure type="NotEnoughFoo"> '+test.name+' </failure>\n';
+			}
+			xmlString += '</testcase>\n';
+
+		}
+
+	});
+
+	xmlString += '</testsuite>\n';
+	xmlString += '</testsuites>';
+
+	// Write XML to file
+	var fileloc = "/tmp/junit-buildresults.xml";	
+	var newFile = Titanium.Filesystem.getFile("/tmp", "junit-buildresults.xml");
+
+	newFile.createFile();
+
+	if (newFile.exists()) {
+	    newFile.write(xmlString);
+	    Ti.API.info("[JUNITXMLFILE] written to "+fileloc);
+	}	
+}
+
 //Report on the suites that have been added
 exports.run = function() {
 	specCount = 0;
@@ -193,6 +248,11 @@ exports.run = function() {
 		    log('*******************************************');
 			log('You ran '+specCount+' specs with '+failures+' failures and '+successes+' successes.');
 					
+			// Write jUnit XML file
+			log('Writing JUnit XML file...');
+			writeJUnitXMLFile(tests);
+			log('...OK');
+			
 			//Flush output
 			Ti.API.info(output.join('\n'));
 			clearInterval(timer);
