@@ -224,8 +224,8 @@ function writeJUnitXMLFile(tests)
 	xmlString += '</testsuites>';
 	
 	// Write XML to file
-	var fileloc = "/tmp/junit-buildresults.xml";	
-	var newFile = Titanium.Filesystem.getFile("/tmp", "junit-buildresults.xml");
+	var fileloc = "./unit-testing-alloy-projects/junit-buildresults.xml";	
+	var newFile = Titanium.Filesystem.getFile("./unit-testing-alloy-projects", "junit-buildresults.xml");
 		
 	newFile.createFile();
 	
