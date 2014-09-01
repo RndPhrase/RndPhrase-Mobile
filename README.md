@@ -1,4 +1,9 @@
 # RndPhrase Mobile
+
+NB! This project is discontinued as a webapp is planned instead which is easier to develop and maintain.
+
+Donations to get me to bump on top of my todo-list is accepted as BTC 1NPnXF6bUBx9GJCnHkWNN5hpNQQAbWnpPP
+
 ## Introduction
 RndPhrase Mobile is an implementation of the original RndPhrase https://github.com/brinchj/RndPhrase targeted for mobile devices.
 
